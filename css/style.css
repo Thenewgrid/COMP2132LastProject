@@ -1,0 +1,53 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #de4c35, #c6c31c);
+}
+
+#popUpBox {
+  width: 250px;
+  height: 200px;
+  text-align: center;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+  background-color: #506ED9;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+}
+#popUpBox h2 {
+  margin: 5px;
+}
+#popUpBox p {
+  margin: 5px;
+}
+#popUpBox #gameOverImage {
+  height: 100px;
+}
+#popUpBox #playAgainButton {
+  background-color: #DE4C35;
+  width: 100px;
+  padding: 2px;
+  border-radius: 20px;
+}
+#popUpBox #playAgainButton:hover {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+       user-select: none;
+}
+
+.main-container {
+  width: 400px;
+  height: 400px;
+}
