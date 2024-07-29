@@ -72,3 +72,6 @@ body {
   color: #ffffff;
   text-align: center;
 }
+.main-container .sub-container p {
+  margin: 3px;
+}

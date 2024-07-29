@@ -10,20 +10,24 @@ const wordToGuess     = document.getElementById("wordToGuess"); // same value as
 const hintDisplay     = document.getElementById("hintDisplay");
 const wrongGuesses    = document.getElementById("wrongGuesses"); // use innerHTML to display
 const keyBoard        = document.getElementById("keyBoardMap"); // letters will go here
+
 const hangImagePath   = `images/hangman`;
+const winImage        = `images/trophy.png`;
+const loseImage       = `images/hollow_thumb.png`;
+const maxGuess        = 6;
+
 
 // this function is just a dummy tester but very helpful for how the pop up should work
 let count = 0;
 
 hangmanImage.addEventListener('click', function(){
-    if(count !== 6){
+    if(count < 6){
         count++
         hangmanImage.src = `${hangImagePath}-${count}.svg`;
     } else if(count === 6){
         hangmanImage.src = `${hangImagePath}-${count}.svg`;
         popUpBox.style.opacity = 1;
-        gameBox.style.opacity = 0.4;
-        console.log(count);
+        gameBox.style.opacity = 0.3;
     }
 })
 
@@ -33,4 +37,23 @@ playAgainButton.addEventListener('click', function(){
     gameBox.style.opacity = 1;
     hangmanImage.src = `${hangImagePath}-0.svg`;
     count = 0;
+    wrongGuessCount = 0;
+    wrongGuesses.innerHTML = `${wrongGuessCount} / ${maxGuess}`;
+    wrongGuesses.style.color = "#ffffff";
 })
+
+// wrong guess count
+let wrongGuessCount = 0;
+wrongGuesses.innerHTML = `${wrongGuessCount} / ${maxGuess}`;
+
+hangmanImage.addEventListener('click', function(){
+    if(wrongGuessCount < maxGuess){
+        wrongGuessCount++
+        wrongGuesses.innerHTML = `${wrongGuessCount} / ${maxGuess}`;
+    } else if(wrongGuessCount === maxGuess){
+        wrongGuesses.style.color = "red";
+    }
+    
+})
+
+//make a reset game button ASAP
