@@ -16,6 +16,8 @@ const winImage        = `images/trophy.png`;
 const loseImage       = `images/hollow_thumb.png`;
 const maxGuess        = 6;
 
+// reset function
+
 
 // this function is just a dummy tester but very helpful for how the pop up should work
 let count = 0;
@@ -26,14 +28,14 @@ hangmanImage.addEventListener('click', function(){
         hangmanImage.src = `${hangImagePath}-${count}.svg`;
     } else if(count === 6){
         hangmanImage.src = `${hangImagePath}-${count}.svg`;
-        popUpBox.style.opacity = 1;
+        popUpBox.style.display = 'block';
         gameBox.style.opacity = 0.3;
     }
 })
 
 //play again feature
 playAgainButton.addEventListener('click', function(){
-    popUpBox.style.opacity = 0;
+    popUpBox.style.display = 'none';
     gameBox.style.opacity = 1;
     hangmanImage.src = `${hangImagePath}-0.svg`;
     count = 0;
@@ -55,5 +57,3 @@ hangmanImage.addEventListener('click', function(){
     }
     
 })
-
-//make a reset game button ASAP

@@ -23,11 +23,8 @@ body {
   color: #ffffff;
   padding: 10px;
   border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   z-index: 5;
-  opacity: 0;
+  display: block;
 }
 #popUpBox h2 {
   margin: 5px;
@@ -40,7 +37,6 @@ body {
 }
 #popUpBox #playAgainButton {
   background-color: #DE4C35;
-  width: 100px;
   padding: 2px;
   border-radius: 20px;
 }
@@ -71,7 +67,35 @@ body {
   border-radius: 25px;
   color: #ffffff;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .main-container .sub-container p {
   margin: 3px;
+}
+.main-container .sub-container #keyBoardMap {
+  width: 250px;
+}
+.main-container .sub-container #keyBoardMap ul {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.main-container .sub-container #keyBoardMap ul li {
+  background-color: #351892;
+  padding: 3px;
+  width: 20px;
+  margin: 3px;
+  border-radius: 5px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+       user-select: none;
+  cursor: pointer;
+}
+.main-container .sub-container #keyBoardMap li:hover {
+  background-color: #506ED9;
 }
