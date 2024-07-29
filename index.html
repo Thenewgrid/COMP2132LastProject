@@ -9,18 +9,22 @@
     <title>Hangman</title>
 </head>
 <body>
-    <div class="main-container">
-        <div id="popUpBox">
+    <section class="main-container">
+        <article id="popUpBox">
             <img src="images/trophy.png" alt="result" id="gameOverImage">
             <h2>Game Over</h2>
             <p>Hidden word was <strong><span id="hiddenWord">word</span></strong>.</p>
             <p id="playAgainButton">Play Again</p>
-        </div>
-
-        <div class="sub-container">
-            <h2>how about now?</h2>
-        </div>
-        
-    </div>
+        </article>
+        <article id="hangImageHolder">
+            <img src="images/hangman-0.svg" alt="hangman" id="hangImage">
+        </article>
+        <section class="sub-container">
+            <h2 id="wordToGuess">word</h2>
+            <p>Hint: <span id="hintDisplay">something we use everyday something we use everyday something we use everyday</span></p>
+            <p>Incorrect guesses: <span id="wrongGuesses">0/0</span></p>
+            <article id="keyBoardMap"></article>
+        </section>
+    </section>
 </body>
 </html>
