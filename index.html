@@ -11,7 +11,7 @@
 <body>
     <article id="popUpBox">
         <img src="images/trophy.png" alt="result" id="gameOverImage">
-        <h2>Game Over</h2>
+        <h2 id="endGame">Game Over</h2>
         <p>Hidden word was <strong><span id="hiddenWord">word</span></strong>.</p>
         <p id="playAgainButton">Play Again</p>
     </article>
@@ -20,38 +20,13 @@
             <img src="images/hangman-0.svg" alt="hangman" id="hangImage">
         </article>
         <section class="sub-container">
-            <h2 id="wordToGuess">word</h2>
-            <p>Hint: <span id="hintDisplay">something we use everyday something we use everyday something we use everyday</span></p>
+            <div id="wordToGuess">
+                <ul id="wordHolder"></ul>
+            </div>
+            <p>Hint: <span id="hintDisplay">something we use everyday</span></p>
             <p>Incorrect guesses: <span id="wrongGuesses"></span></p>
             <article id="keyBoardMap">
-                <ul>
-                    <li>A</li>
-                    <li>B</li>
-                    <li>C</li>
-                    <li>D</li>
-                    <li>E</li>
-                    <li>F</li>
-                    <li>G</li>
-                    <li>H</li>
-                    <li>I</li>
-                    <li>J</li>
-                    <li>K</li>
-                    <li>L</li>
-                    <li>M</li>
-                    <li>N</li>
-                    <li>O</li>
-                    <li>P</li>
-                    <li>Q</li>
-                    <li>R</li>
-                    <li>S</li>
-                    <li>T</li>
-                    <li>U</li>
-                    <li>V</li>
-                    <li>W</li>
-                    <li>X</li>
-                    <li>Y</li>
-                    <li>Z</li>
-                </ul>
+                <ul id="keyBoardLetterHolder"></ul>
             </article>
         </section>
     </section>
