@@ -6,7 +6,7 @@
 body {
   height: 100vh;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #de4c35, #c6c31c);
+  background: linear-gradient(135deg, #a08cc1, #351892);
 }
 
 #popUpBox {
@@ -48,6 +48,14 @@ body {
 }
 
 .main-container {
-  width: 400px;
-  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}
+.main-container .sub-container {
+  width: 200px;
+  height: 200px;
+  background-color: #ffffff;
 }
