@@ -8,7 +8,6 @@ const hangmanImage    = document.getElementById("hangImage");
 const hintDisplay     = document.getElementById("hintDisplay");
 const wrongGuesses    = document.getElementById("wrongGuesses"); // use innerHTML to display
 const keyBoard        = document.getElementById("keyBoardMap"); // letters will go here
-const letterHolder    = document.getElementById("keyBoardLetterHolder");
 const endGameMessage  = document.getElementById("endGame");
 const wordHolder      = document.getElementById("wordHolder");
 
@@ -22,9 +21,9 @@ let currentWord;
 
 //keyboard
 for(let i = 97; i <= 122; i++){
-    btn = document.createElement("li");
+    btn = document.createElement("button");
     btn.innerText = String.fromCharCode(i);
-    letterHolder.appendChild(btn);
+    keyBoard.appendChild(btn);
     //event listener for button clicks
     btn.addEventListener('click', function(event){ return initGame(event.target, String.fromCharCode(i))});
 }
@@ -40,12 +39,16 @@ function getRandomWord(){
 
 getRandomWord();
 
+//
+let correctLetters = [];
+
 //checking if letter exists in word
 const initGame = function(button, selectedLetter){
     if(currentWord.includes(selectedLetter)){
         //finding letters in the word
         [...currentWord].forEach((letter,index) => {
             if(letter === selectedLetter){
+                correctLetters.push(letter);
                 wordHolder.querySelectorAll("li")[index].innerText = letter;
                 wordHolder.querySelectorAll("li")[index].classList.add("letterFound");
             }
@@ -56,10 +59,18 @@ const initGame = function(button, selectedLetter){
     }
     // updating the guesses and button
     wrongGuesses.innerHTML = `${wrongGuessCount} / ${maxGuess}`;
+    button.disabled = true;
+
+    //game over logic statements
+    if(wrongGuessCount === maxGuess) return gameEnd(false);
+    if(correctLetters.length === currentWord.length) return gameEnd(true); // 31:05
 }
 
+//game over logic complete
+
+
 // wrong guess count
-let wrongGuessCount = 0; // use red color whn 6 is reached
+let wrongGuessCount = 0; // use red color when 6 is reached
 
 // reset function
 function resetGame(){
@@ -68,7 +79,6 @@ function resetGame(){
     wrongGuessCount = 0;
     wrongGuesses.innerHTML = ``;
     wrongGuesses.style.color = "#ffffff";
-    count = 0;
     gameBox.style.opacity = 1;
 }
 
