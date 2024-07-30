@@ -3,13 +3,14 @@ const gameBox         = document.getElementById("gameHolder");
 const popUpBox        = document.getElementById("popUpBox");
 const answerInPopUp   = document.getElementById("hiddenWord");
 const playAgainButton = document.getElementById("playAgainButton");
-const hangmanSection  = document.getElementById("hangImageHolder");
 const hangmanImage    = document.getElementById("hangImage");
 const hintDisplay     = document.getElementById("hintDisplay");
 const wrongGuesses    = document.getElementById("wrongGuesses"); // use innerHTML to display
 const keyBoard        = document.getElementById("keyBoardMap"); // letters will go here
 const endGameMessage  = document.getElementById("endGame");
+const endImage        = document.getElementById("gameOverImage");
 const wordHolder      = document.getElementById("wordHolder");
+const popUpText       = document.getElementById("popUpText");
 
 const hangImagePath   = `images/hangman`;
 const winImage        = `images/trophy.png`;
@@ -38,9 +39,26 @@ function getRandomWord(){
 }
 
 getRandomWord();
+//game over logic complete
+const gameEnd = function(isVictory){
+    setTimeout( function(){
+        popUpText.innerText = isVictory ? `You Found:` : `Correct word was:`;
+        endImage.src = isVictory ? winImage : loseImage;
+        endGameMessage.innerText = `${isVictory ? 'Well done!' : 'Game over!'}`;
+        answerInPopUp.innerText = `${currentWord}`;
+        popUpBox.style.display = 'block';
+        keyBoard.querySelectorAll("button").forEach(btn => btn.disabled = true);
+        gameBox.style.opacity = 0.4;
+        gameBox.style.transition = 'opacity 0.4s ease';
+    }, 300)
+}
 
-//
+// list of correctly guessed letters
 let correctLetters = [];
+
+// wrong guess count
+let wrongGuessCount = 0;
+wrongGuesses.innerHTML = `${wrongGuessCount} / ${maxGuess}`;
 
 //checking if letter exists in word
 const initGame = function(button, selectedLetter){
@@ -63,23 +81,19 @@ const initGame = function(button, selectedLetter){
 
     //game over logic statements
     if(wrongGuessCount === maxGuess) return gameEnd(false);
-    if(correctLetters.length === currentWord.length) return gameEnd(true); // 31:05
+    if(correctLetters.length === currentWord.length) return gameEnd(true);
 }
-
-//game over logic complete
-
-
-// wrong guess count
-let wrongGuessCount = 0; // use red color when 6 is reached
 
 // reset function
 function resetGame(){
     popUpBox.style.display = 'none';
-    hangmanImage.src = `${hangImagePath}-0.svg`;
     wrongGuessCount = 0;
-    wrongGuesses.innerHTML = ``;
-    wrongGuesses.style.color = "#ffffff";
+    wrongGuesses.innerHTML = `${wrongGuessCount} / ${maxGuess}`;
+    hangmanImage.src = `${hangImagePath}-${wrongGuessCount}.svg`;
+    correctLetters = [];
+    keyBoard.querySelectorAll("button").forEach(btn => btn.disabled = false);
     gameBox.style.opacity = 1;
+    getRandomWord();
 }
 
 //play again feature
