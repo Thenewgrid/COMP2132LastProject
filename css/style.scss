@@ -104,6 +104,10 @@ body{
                         background-color: #506ED9;
                     }
                 }
+                .afterClick{
+                    opacity: 0.5;
+                    pointer-events: none;
+                }
             }
         }
         

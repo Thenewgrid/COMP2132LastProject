@@ -1,4 +1,3 @@
-// To use listOfWords, the mylist.js file must be open
 // All my IDs
 const gameBox         = document.getElementById("gameHolder");
 const popUpBox        = document.getElementById("popUpBox");
@@ -18,22 +17,49 @@ const winImage        = `images/trophy.png`;
 const loseImage       = `images/hollow_thumb.png`;
 const maxGuess        = 6;
 
+// the word right now
+let currentWord;
+
 //keyboard
 for(let i = 97; i <= 122; i++){
     btn = document.createElement("li");
     btn.innerText = String.fromCharCode(i);
     letterHolder.appendChild(btn);
+    //event listener for button clicks
+    btn.addEventListener('click', function(event){ return initGame(event.target, String.fromCharCode(i))});
 }
 
 //get random word and hint
 function getRandomWord(){
     const { word, hint} = listOfWords[Math.floor(Math.random() * listOfWords.length)];
-    console.log(word, hint);
+    currentWord = word;
+    console.log(word, hint); // remove later (before submission)
     hintDisplay.innerText = hint;
     wordHolder.innerHTML = word.split("").map( function(){ return `<li class="wordLetter"></li>`}).join("");
 }
 
 getRandomWord();
+
+//checking if letter exists in word
+const initGame = function(button, selectedLetter){
+    if(currentWord.includes(selectedLetter)){
+        //finding letters in the word
+        [...currentWord].forEach((letter,index) => {
+            if(letter === selectedLetter){
+                wordHolder.querySelectorAll("li")[index].innerText = letter;
+                wordHolder.querySelectorAll("li")[index].classList.add("letterFound");
+            }
+        })
+    }else{
+        wrongGuessCount++
+        hangmanImage.src = `${hangImagePath}-${wrongGuessCount}.svg`;
+    }
+    // updating the guesses and button
+    wrongGuesses.innerHTML = `${wrongGuessCount} / ${maxGuess}`;
+}
+
+// wrong guess count
+let wrongGuessCount = 0; // use red color whn 6 is reached
 
 // reset function
 function resetGame(){
@@ -51,29 +77,3 @@ playAgainButton.addEventListener('click', function(){
     resetGame();
 })
 
-// this function is just a dummy tester but very helpful for how the pop up should work
-let count = 0;
-
-hangmanImage.addEventListener('click', function(){
-    if(count < 6){
-        count++
-        hangmanImage.src = `${hangImagePath}-${count}.svg`;
-    } else if(count === 6){
-        hangmanImage.src = `${hangImagePath}-${count}.svg`;
-        popUpBox.style.display = 'block';
-        gameBox.style.opacity = 0.3;
-    }
-})
-
-// wrong guess count
-let wrongGuessCount = 0;
-
-hangmanImage.addEventListener('click', function(){
-    if(wrongGuessCount < maxGuess){
-        wrongGuessCount++
-        wrongGuesses.innerHTML = `${wrongGuessCount} / ${maxGuess}`;
-    } else if(wrongGuessCount === maxGuess){
-        wrongGuesses.style.color = "red";
-    }
-    
-})
